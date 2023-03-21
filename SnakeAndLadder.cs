@@ -26,30 +26,37 @@ namespace SnakeAndLadderPlay
         {
             while (this.playerPosition < WINNING_POSITION)
             {
-                int option = random.Next(1, 3);
+                int option = random.Next(0, 2);
                 switch (option)
                 {
                     case NO_PLAY:
                         break;
                     case LADDER:
                         this.playerPosition += DieRoll();
-                        Console.WriteLine("Ladder - moved ahead" + DieRoll());
+                        Console.WriteLine("Ladder - moved ahead " + DieRoll());
                         break;
                     case SNAKE:
-                        this.playerPosition -= DieRoll();
-                        Console.WriteLine("Snake - move behind" + DieRoll());
+                        this.playerPosition = DieRoll();
+                        if (this.playerPosition - DieRoll() > 0)
+                            this.playerPosition -= DieRoll();
+                        else
+                            this.playerPosition = 0;
+                        Console.WriteLine("Snake - move behind " + DieRoll());
                         break;
                 }
+                Console.WriteLine("You went zero, Restart game from 0");
                 if (this.playerPosition < 0)
                 {
-                    playerPosition = 0;
-                    Console.WriteLine("You went zero, Restart game from 0");
-                }
-                if (this.playerPosition ==  WINNING_POSITION)
-                {
                     Console.WriteLine("Player position--->" + playerPosition);
+                    Console.WriteLine("Die count--->" + count);
+                }
+                else if (this.playerPosition > 100)
+                {
+                    this.playerPosition -= DieRoll();
+                    Console.WriteLine("You get number over to 100, so stay in same position");
                 }
             }
+            Console.WriteLine("Congrats! you have reached winning position 100");
         }
     }
 }
