@@ -7,8 +7,16 @@ namespace SnakeAndLadderPlay
         static void Main(string[] args) 
         {
             Console.WriteLine("Welcome to Snake and Ladder play");
-            SnakeAndLadder snakeAndLadder = new SnakeAndLadder();
-            snakeAndLadder.DieRoll();
+            if (args.Length==1)
+            {
+                SnakeAndLadder snakeAndLadder = new SnakeAndLadder();
+                snakeAndLadder.DieRoll();
+                snakeAndLadder.Game();
+            }
+            else
+            {
+                Console.WriteLine("No player for game");
+            }
 
         }
     }
