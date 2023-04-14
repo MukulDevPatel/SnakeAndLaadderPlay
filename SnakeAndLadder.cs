@@ -10,7 +10,7 @@ namespace SnakeAndLadderPlay
     {
         const int NO_PLAY = 0, LADDER = 1, SNAKE = 2, WINNING_POSITION = 100;
         int playerPosition = 0;  //UC1
-        int count=0;
+        int count = 0;
         
         //UC2
         Random random = new Random();
@@ -21,12 +21,12 @@ namespace SnakeAndLadderPlay
             count++;
             return die;
         }
-        //UC3
+        //UC6
         public void Game()
         {
             while (this.playerPosition < WINNING_POSITION)
             {
-                int option = random.Next(0, 2);
+                int option = random.Next(1, 4);
                 switch (option)
                 {
                     case NO_PLAY:
@@ -55,8 +55,11 @@ namespace SnakeAndLadderPlay
                     this.playerPosition -= DieRoll();
                     Console.WriteLine("You get number over to 100, so stay in same position");
                 }
+                Console.WriteLine("Current position" + playerPosition);
+                count++;
             }
             Console.WriteLine("Congrats! you have reached winning position 100");
+            Console.WriteLine("Number of die roll to win: " + count);
         }
     }
 }
